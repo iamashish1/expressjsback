@@ -6,7 +6,10 @@ import firebaseAdmin from 'firebase-admin'; // Import the default export
 import serviceAccount from '../serviceKey.json' assert { type: 'json' };
 
 const admin = firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(serviceAccount)
+  credential: firebaseAdmin.credential.cert(serviceAccount),
 });
 
 export const auth = admin.auth(); // Optionally export the auth instance
+
+export const firestore = admin.firestore();
+console.log("dsfsdf")
