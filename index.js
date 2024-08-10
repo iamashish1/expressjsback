@@ -34,7 +34,7 @@ messagesCollection.onSnapshot((snapshot) => {
       // Example of how to send a notification (requires actual device token)
       // Assuming you have a device token stored somewhere or passed in the message
       const deviceToken = 'YOUR_DEVICE_TOKEN';
-      sendNotification(deviceToken, 'New Message', `You have a new message: ${newMessage.content}`);
+      // sendNotification(deviceToken, 'New Message', `You have a new message: ${newMessage.content}`);
     }
     if (change.type === 'modified') {
       console.log('Message modified: ', change.doc.data());

@@ -1,15 +1,20 @@
-// firebase_config.js
+import firebaseAdmin from 'firebase-admin';
+import dotenv from 'dotenv';
 
-import firebaseAdmin from 'firebase-admin'; // Import the default export
+// Load environment variables from .env file
+dotenv.config();
 
-// Initialize Firebase Admin SDK with service account credentials
-import serviceAccount from '../serviceKey.json' assert { type: 'json' };
-
+// Initialize Firebase Admin SDK with environment variables
 const admin = firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(serviceAccount),
+  credential: firebaseAdmin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  }),
 });
 
-export const auth = admin.auth(); // Optionally export the auth instance
+export const auth = admin.auth();
 
 export const firestore = admin.firestore();
-console.log("dsfsdf")
+
+console.log("Firebase initialized");
